@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/LanshanTeam/LanUI">
-    <img width="120" src="https://github.com/LanshanTeam/LanUI/blob/main/public/vite.svg">
+    <img width="120" src="https://github.com/LanshanTeam/LanUI/blob/master/public/logo.jpg">
   </a>
 </p>
 

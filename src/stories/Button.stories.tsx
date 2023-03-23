@@ -10,7 +10,7 @@ export default {
     // componentSubtitle: 'this just is a button to click',
     // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
     argTypes: {
-        backgroundColor: { control: 'color' },
+        //     backgroundColor: { control: 'color' },
     },
 } as ComponentMeta<typeof Button>;
 
@@ -40,3 +40,13 @@ Small.args = {
     size: 'small',
     label: 'Button',
 };
+
+export const WithVariants = () => (
+    <div>
+        <Button size="large" label="Button"></Button>
+        <Button size="small" label="Button"></Button>
+        <Button size="large" label="Button"></Button>
+        <Button size="large" label="Button"></Button>
+        <Button size="large" label="Button"></Button>
+    </div>
+);

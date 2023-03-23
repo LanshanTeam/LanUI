@@ -1,5 +1,5 @@
 /// <reference types="react" />
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { type ComponentStory, type ComponentMeta } from '@storybook/react';
 declare const _default: ComponentMeta<
     ({
         primary,
@@ -46,3 +46,4 @@ export declare const Small: ComponentStory<
         ...props
     }: import('../components/button/Button').ButtonProps) => JSX.Element
 >;
+export declare const WithVariants: () => JSX.Element;

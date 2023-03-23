@@ -7,7 +7,8 @@ export type AlertType = 'primary' | 'info' | 'success' | 'warning' | 'danger';
 export interface BaseAlertProps {
     type?: AlertType;
     className?: string;
-    description?: string;
+    description?: React.ReactNode;
+    // children?: React.ReactNode;
 }
 
 const Alert: FC<BaseAlertProps> = (props) => {

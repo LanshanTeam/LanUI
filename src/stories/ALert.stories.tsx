@@ -21,7 +21,6 @@ Primary.args = {
 
 export const Info = Template.bind({});
 Info.args = {
-    // label: 'Button',
     type: 'info',
     description: '主要',
 };

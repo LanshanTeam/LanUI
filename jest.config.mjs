@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     setupFilesAfterEnv: ['@testing-library/jest-dom'],
     testEnvironment: 'jsdom',
     testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
@@ -10,4 +10,5 @@ module.exports = {
     moduleNameMapper: {
         '\\.(css|less)$': 'identity-obj-proxy',
     },
+    verbose: true
 };

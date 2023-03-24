@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[LanUI]，是一款基于 storybook，由 React + TypeScript 开发的组件库 🎉。
+[LanUI]，是一款基于 storybook，由 React + TypeScriptJest + jest + React Testing Library 开发的组件库 🎉。
 
 </div>
 
@@ -55,3 +55,7 @@ const App = () => (
 -   [x] CSS 样式解决方案、初始化文件结构、UI 设计
 -   [x] 开发 Button Alert 组件
 -   [x] 部分组件的测试
+
+## 求助
+
+-   来个 UI 大 die

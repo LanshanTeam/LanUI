@@ -10,5 +10,6 @@ export default {
     moduleNameMapper: {
         '\\.(css|less)$': 'identity-obj-proxy',
     },
-    verbose: true
+    verbose: true,
+    updateSnap: "jest test --updateSnapshot"
 };

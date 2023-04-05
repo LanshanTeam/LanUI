@@ -46,8 +46,9 @@ export default defineConfig({
             entry: resolve('src/main.tsx'),
             // 组件库名称
             name: 'LanUI',
-            // 文件名称, 打包结果举例: my-packages.umd.cjs
+            // 输出文件名的前缀, 打包结果举例: my-packages.umd.cjs
             fileName: 'LANUI',
+            formats: ['es', 'umd', 'iife'], // 导出模块类型
         },
         rollupOptions: {
             // 确保外部化处理那些你不想打包进库的依赖
@@ -70,6 +71,8 @@ export default defineConfig({
                 }),
             ],
         },
-        cssCodeSplit: true,
+        cssCodeSplit: true, // 是否单独输出css
+        minify: 'terser',
+        sourcemap: true, // 输出单独source文件,可以进行断点调试
     },
 });

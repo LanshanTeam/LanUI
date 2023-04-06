@@ -16,7 +16,7 @@ UI 设计方面会参考[chakra 组件库](https://chakra-ui.com/getting-started
 
 ## 项目地址
 
--   [LanUI](lan-ui-c8h5.vercel.app)
+-   (https://lan-ui-c8h5.vercel.app/)
 
 ## ✨ 特性
 

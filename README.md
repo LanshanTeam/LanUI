@@ -18,6 +18,16 @@ UI 设计方面会参考[chakra 组件库](https://chakra-ui.com/getting-started
 
 -   (https://lan-ui-c8h5.vercel.app/)
 
+## 一键式配置组件库开发环境
+
+-   [x] 先安装 npm 包：`npm install wjy-component`
+-   [x] 执行配置命令：`zr create + 文件夹名称`
+-   [x] 选择`LanUI`
+-   [x] 选择版本`1.0.0`
+-   [x] over
+
+-   [x] cli 源码见:`https://github.com/wjywy/componentLibrary`
+
 ## ✨ 特性
 
 -   🌈 提炼组件库设计良好的视觉风格

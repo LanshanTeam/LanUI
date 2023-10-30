@@ -24,11 +24,13 @@ export interface ModalProps {
 }
 
 export interface ModalContext extends Partial<ModalProps> {
+    _isOpen: unknown; //后续没用可以删除
     setIsOpen: React.Dispatch<React.SetStateAction<Boolean>>;
 }
 
 export const ModalContext = createContext<ModalContext>({
-    setIsOpen: function (value: SetStateAction<Boolean>): void {
+    _isOpen: undefined,
+    setIsOpen: function (): void {
         throw new Error('Function setIsOpen not implemented.');
     },
 });
@@ -44,26 +46,28 @@ const Modal = ({ isOpen, size, title = '内容' }: ModalProps) => {
         setIsOpen(false);
     };
 
-    return _isOpen ? (
-        <ModalContext.Provider value={{ setIsOpen }}>
-            {createPortal(
-                <>
-                    <ModalOverlay onClick={close} />
-                    <ModalContent>
-                        <ModalHeader />
-                        <ModalBody>
-                            <p>Content 1</p>
-                            <p>Content 2</p>
-                            <p>Content 3</p>
-                        </ModalBody>
+    return (
+        _isOpen && (
+            <ModalContext.Provider value={{ _isOpen, setIsOpen }}>
+                {createPortal(
+                    <>
+                        <ModalOverlay onClick={close} />
+                        <ModalContent>
+                            <ModalHeader />
+                            <ModalBody>
+                                <p>Content 1</p>
+                                <p>Content 2</p>
+                                <p>Content 3</p>
+                            </ModalBody>
 
-                        <ModalFooter></ModalFooter>
-                    </ModalContent>
-                </>,
-                document.body
-            )}
-        </ModalContext.Provider>
-    ) : null;
+                            <ModalFooter></ModalFooter>
+                        </ModalContent>
+                    </>,
+                    document.body
+                )}
+            </ModalContext.Provider>
+        )
+    );
 };
 
 export default Modal;

@@ -34,7 +34,13 @@ export const openModal = () => {
     return (
         <>
             <Button label="点击弹出框" onClick={() => setIsOpen(true)}></Button>
-            <Modal isOpen={isOpen} onOk={onOk} onCancel={onCancel}></Modal>
+            <Modal
+                isOpen={isOpen}
+                title="标题"
+                width="600px"
+                onOk={onOk}
+                onCancel={onCancel}
+            ></Modal>
         </>
     );
 };

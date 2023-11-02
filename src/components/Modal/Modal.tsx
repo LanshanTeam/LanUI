@@ -5,23 +5,28 @@ import ModalContent from './components/ModalContent';
 import ModalHeader from './components/ModalHeader';
 import ModalBody from './components/ModalBody';
 import ModalFooter from './components/ModalFooter';
-import Button from '../button';
 import './style/modal.less';
 
-enum Size {
-    'xs',
-    'sm',
-    'md',
-    'lg',
-    'xl',
-    'full',
-}
-
 export interface ModalProps {
+    /**
+     * @desc 是否打开
+     */
     isOpen: Boolean;
+    /**
+     * @desc 打开回调函数
+     */
     onOk?: Function;
+    /**
+     * @desc 关闭回调函数
+     */
     onCancel?: Function;
-    size?: string;
+    /**
+     * @desc 宽度
+     */
+    width?: string;
+    /**
+     * @desc 标题
+     */
     title?: string;
 }
 
@@ -40,8 +45,8 @@ const Modal = ({
     isOpen,
     onOk,
     onCancel,
-    size,
-    title = '内容',
+    width = '520px',
+    title = 'title',
 }: ModalProps) => {
     const close = () => {
         onCancel!();
@@ -53,8 +58,8 @@ const Modal = ({
                 {createPortal(
                     <>
                         <ModalOverlay onClick={close} />
-                        <ModalContent>
-                            <ModalHeader />
+                        <ModalContent styles={{ width }}>
+                            <ModalHeader title={title}></ModalHeader>
                             <ModalBody>
                                 <p>Content 1</p>
                                 <p>Content 2</p>

@@ -8,15 +8,11 @@ interface ModalContentProps {
 
 const ModalContent = (props: ModalContentProps) => {
     const { children } = props;
-    const { setIsOpen } = useContext(ModalContext);
-
-    const close = () => {
-        setIsOpen(false);
-    };
+    const { onCancel } = useContext(ModalContext);
 
     return (
         <div className="modal-content">
-            <span className="i_modal_close" onClick={close}>
+            <span className="i_modal_close" onClick={() => onCancel!()}>
                 X
             </span>
             {children}

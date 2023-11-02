@@ -20,10 +20,21 @@ Primary.args = {
 
 export const openModal = () => {
     const [isOpen, setIsOpen] = useState(false);
+
+    const onOk = () => {
+        setIsOpen(false);
+        console.log('执行onOk');
+    };
+
+    const onCancel = () => {
+        setIsOpen(false);
+        console.log('执行onCancel');
+    };
+
     return (
         <>
             <Button label="点击弹出框" onClick={() => setIsOpen(true)}></Button>
-            <Modal isOpen={isOpen}></Modal>
+            <Modal isOpen={isOpen} onOk={onOk} onCancel={onCancel}></Modal>
         </>
     );
 };

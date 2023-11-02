@@ -3,8 +3,10 @@
 
 .modal-content {
     position: absolute; //为static时z-index无效
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
     width: 520px;
-    height: 480px;
     padding: 1rem;
     background-color: #fff;
     animation: open 0.13s;

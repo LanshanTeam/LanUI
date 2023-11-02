@@ -19,36 +19,37 @@ enum Size {
 
 export interface ModalProps {
     isOpen: Boolean;
+    onOk?: Function;
+    onCancel?: Function;
     size?: string;
     title?: string;
 }
 
 export interface ModalContext extends Partial<ModalProps> {
-    _isOpen: unknown; //后续没用可以删除
-    setIsOpen: React.Dispatch<React.SetStateAction<Boolean>>;
+    onOk?: Function;
+    onCancel?: Function;
 }
 
 export const ModalContext = createContext<ModalContext>({
-    _isOpen: undefined,
-    setIsOpen: function (): void {
-        throw new Error('Function setIsOpen not implemented.');
-    },
+    isOpen: undefined,
+    onOk: undefined,
+    onCancel: undefined,
 });
 
-const Modal = ({ isOpen, size, title = '内容' }: ModalProps) => {
-    const [_isOpen, setIsOpen] = useState(isOpen);
-
-    useEffect(() => {
-        setIsOpen(isOpen);
-    }, [isOpen]);
-
+const Modal = ({
+    isOpen,
+    onOk,
+    onCancel,
+    size,
+    title = '内容',
+}: ModalProps) => {
     const close = () => {
-        setIsOpen(false);
+        onCancel!();
     };
 
     return (
-        _isOpen && (
-            <ModalContext.Provider value={{ _isOpen, setIsOpen }}>
+        isOpen && (
+            <ModalContext.Provider value={{ isOpen, onOk, onCancel }}>
                 {createPortal(
                     <>
                         <ModalOverlay onClick={close} />
@@ -59,7 +60,6 @@ const Modal = ({ isOpen, size, title = '内容' }: ModalProps) => {
                                 <p>Content 2</p>
                                 <p>Content 3</p>
                             </ModalBody>
-
                             <ModalFooter></ModalFooter>
                         </ModalContent>
                     </>,

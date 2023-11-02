@@ -1,0 +1,33 @@
+.lanui-virtuallist {
+    position: relative;
+    border: 0.01rem solid rgba(68, 109, 230, 0.637);
+    overflow: auto;
+
+    .list-phantom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+
+    .list-area {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        width: 100%;
+
+        .list-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 90%;
+            border-bottom: 0.01rem solid rgba(68, 109, 230, 0.637);
+
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+    }
+}

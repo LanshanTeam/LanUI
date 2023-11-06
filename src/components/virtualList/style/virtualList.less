@@ -15,7 +15,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-
+        position: relative;
         width: 100%;
 
         .list-item {
@@ -28,6 +28,16 @@
 
             box-sizing: border-box;
             overflow: hidden;
+        }
+
+        .list-item-observer {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            word-wrap: anywhere;
+
+            width: 90%;
+            border-bottom: 0.01rem solid rgba(68, 109, 230, 0.637);
         }
     }
 }

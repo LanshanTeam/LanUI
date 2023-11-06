@@ -1,4 +1,4 @@
-import { createContext, SetStateAction, useEffect, useState } from 'react';
+import { createContext, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import ModalOverlay from './components/ModalOverlay';
 import ModalContent from './components/ModalContent';
@@ -28,6 +28,18 @@ export interface ModalProps {
      * @desc 标题
      */
     title?: string;
+    /**
+     * @desc 页脚内容
+     */
+    footer?: ReactNode;
+    /**
+     * @desc 用户传递的样式
+     */
+    style?: Object;
+    /**
+     * @desc 主体内容
+     */
+    children?: ReactNode;
 }
 
 export interface ModalContext extends Partial<ModalProps> {
@@ -47,25 +59,20 @@ const Modal = ({
     onCancel,
     width = '520px',
     title = 'title',
+    footer,
+    style,
+    children,
 }: ModalProps) => {
-    const close = () => {
-        onCancel!();
-    };
-
     return (
         isOpen && (
             <ModalContext.Provider value={{ isOpen, onOk, onCancel }}>
                 {createPortal(
                     <>
-                        <ModalOverlay onClick={close} />
-                        <ModalContent styles={{ width }}>
+                        <ModalOverlay onClick={() => onCancel!()} />
+                        <ModalContent styles={{ width, ...style }}>
                             <ModalHeader title={title}></ModalHeader>
-                            <ModalBody>
-                                <p>Content 1</p>
-                                <p>Content 2</p>
-                                <p>Content 3</p>
-                            </ModalBody>
-                            <ModalFooter></ModalFooter>
+                            <ModalBody>{children}</ModalBody>
+                            <ModalFooter>{footer}</ModalFooter>
                         </ModalContent>
                     </>,
                     document.body

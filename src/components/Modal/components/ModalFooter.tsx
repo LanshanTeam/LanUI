@@ -12,7 +12,7 @@ const ModalFooter = (props: ModalFooterProps) => {
     const { onOk, onCancel } = useContext(ModalContext);
 
     const DefaultFooterArea = (
-        <div className="btn-area">
+        <>
             <Button label="Cancel" onClick={() => onCancel!()}></Button>
             <Button
                 label="OK"
@@ -20,10 +20,14 @@ const ModalFooter = (props: ModalFooterProps) => {
                 //@ts-ignore
                 style={{ marginLeft: '0.625rem' }}
             ></Button>
-        </div>
+        </>
     );
 
-    return <>{children ? children : DefaultFooterArea}</>;
+    return (
+        <div className="btn-area">
+            {children ? children : DefaultFooterArea}
+        </div>
+    );
 };
 
 export default ModalFooter;

@@ -4,7 +4,8 @@ import '../style/modalContent.less';
 
 interface ModalContentProps {
     children?: ReactNode;
-    styles?: Record<string, string>;
+    style?: Object;
+    styles?: Record<string | number | symbol, unknown>;
 }
 
 const ModalContent = (props: ModalContentProps) => {

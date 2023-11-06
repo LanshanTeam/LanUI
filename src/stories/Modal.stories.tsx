@@ -15,7 +15,8 @@ const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
 export const Primary = Template.bind({});
 Primary.args = {
     isOpen: true,
-    title: 'Modal好好好',
+    title: 'title',
+    children: 'Content',
 };
 
 export const openModal = () => {
@@ -38,9 +39,15 @@ export const openModal = () => {
                 isOpen={isOpen}
                 title="标题"
                 width="600px"
+                style={{ top: '160px' }}
                 onOk={onOk}
                 onCancel={onCancel}
-            ></Modal>
+                footer={<button onClick={onOk}>自定义确认</button>}
+            >
+                <p>Content 1</p>
+                <p>Content 2</p>
+                <p>Content 3</p>
+            </Modal>
         </>
     );
 };

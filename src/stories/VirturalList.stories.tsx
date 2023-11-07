@@ -89,7 +89,7 @@ const Template1: ComponentStory<typeof VirtualList> = (args) => (
         <VirtualList {...args} />
     </div>
 );
-const Template2: ComponentStory<typeof VirtualList> = (args) => (
+const Template2: ComponentStory<typeof VirtualList_Dynamic> = (args) => (
     <div style={{ display: 'flex' }}>
         <VirtualList_Dynamic {...args}>
             {({ index, item, measure }: Observer_ItemProps) => (

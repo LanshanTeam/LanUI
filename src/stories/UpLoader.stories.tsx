@@ -11,6 +11,10 @@ export default {
     },
 } as ComponentMeta<typeof UpLoader>;
 
-const Template: ComponentStory<typeof UpLoader> = (args) => <UpLoader />;
+const Template: ComponentStory<typeof UpLoader> = (args) => (
+    <div style={{ display: 'flex', height: '25rem', width: '25rem' }}>
+        <UpLoader />
+    </div>
+);
 
 export const Primary = Template.bind({});

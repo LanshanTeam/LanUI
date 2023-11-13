@@ -1,4 +1,4 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import ModalOverlay from './components/ModalOverlay';
 import ModalContent from './components/ModalContent';
@@ -63,22 +63,50 @@ const Modal = ({
     style,
     children,
 }: ModalProps) => {
+    const modalRef = useRef(null);
+    const [visible, setVisible] = useState(false);
+    const [animatedVisible, setAnimatedVisible] = useState(isOpen);
+    useEffect(() => {
+        console.log('animatedVisible改变了', animatedVisible);
+    }, [animatedVisible]);
+    useEffect(() => {
+        if (isOpen) {
+            console.log('isOpen=true');
+            setVisible(true);
+            setTimeout(() => {
+                setAnimatedVisible(true);
+            }, 10);
+        } else {
+            console.log('isOpen=false');
+            setAnimatedVisible(false);
+            setTimeout(() => {
+                setVisible(false);
+            }, 300);
+        }
+    }, [isOpen]);
+
     return (
-        isOpen && (
-            <ModalContext.Provider value={{ isOpen, onOk, onCancel }}>
-                {createPortal(
-                    <>
-                        <ModalOverlay onClick={() => onCancel!()} />
-                        <ModalContent styles={{ width, ...style }}>
-                            <ModalHeader title={title}></ModalHeader>
-                            <ModalBody>{children}</ModalBody>
-                            <ModalFooter>{footer}</ModalFooter>
-                        </ModalContent>
-                    </>,
-                    document.body
-                )}
-            </ModalContext.Provider>
-        )
+        <ModalContext.Provider value={{ isOpen, onOk, onCancel }}>
+            {createPortal(
+                <div
+                    ref={modalRef}
+                    style={{ display: visible ? 'block' : 'none' }}
+                >
+                    <ModalOverlay
+                        onClick={() => onCancel!()}
+                        styles={{
+                            opacity: animatedVisible ? 1 : 0,
+                        }}
+                    />
+                    <ModalContent styles={{ width, ...style }}>
+                        <ModalHeader title={title}></ModalHeader>
+                        <ModalBody>{children}</ModalBody>
+                        <ModalFooter>{footer}</ModalFooter>
+                    </ModalContent>
+                </div>,
+                document.body
+            )}
+        </ModalContext.Provider>
     );
 };
 

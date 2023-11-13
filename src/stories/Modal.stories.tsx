@@ -10,16 +10,32 @@ export default {
     argTypes: {},
 } as ComponentMeta<typeof Modal>;
 
-const Template: ComponentStory<typeof Modal> = (args) => <Modal {...args} />;
+export const Primary = () => {
+    const [isOpen, setIsOpen] = useState(false);
 
-export const Primary = Template.bind({});
-Primary.args = {
-    isOpen: true,
-    title: 'title',
-    children: 'Content',
+    const onOk = () => {
+        setIsOpen(false);
+        console.log('执行onOk');
+    };
+
+    const onCancel = () => {
+        setIsOpen(false);
+        console.log('执行onCancel');
+    };
+
+    return (
+        <>
+            <Button label="点击弹出框" onClick={() => setIsOpen(true)}></Button>
+            <Modal isOpen={isOpen} onOk={onOk} onCancel={onCancel}>
+                <p>Content 1</p>
+                <p>Content 2</p>
+                <p>Content 3</p>
+            </Modal>
+        </>
+    );
 };
 
-export const openModal = () => {
+export const Custom = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     const onOk = () => {

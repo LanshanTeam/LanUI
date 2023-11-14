@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect } from 'react';
+import { MouseEventHandler } from 'react';
 import '../style/modalOverlay.less';
 
 interface IModalOverlayProps {
@@ -7,9 +7,6 @@ interface IModalOverlayProps {
 }
 
 const ModalOverlay = ({ onClick, styles }: IModalOverlayProps) => {
-    useEffect(() => {
-        console.log('styles', styles);
-    }, [styles]);
     return <div className="mask" style={{ ...styles }} onClick={onClick}></div>;
 };
 

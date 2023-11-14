@@ -5,7 +5,8 @@ import ModalContent from './components/ModalContent';
 import ModalHeader from './components/ModalHeader';
 import ModalBody from './components/ModalBody';
 import ModalFooter from './components/ModalFooter';
-import './style/modal.less';
+import { getAnimatedAttr } from './utils/getAnimatedAttr';
+import { DURATION } from './constant';
 
 export interface ModalProps {
     /**
@@ -21,9 +22,9 @@ export interface ModalProps {
      */
     onCancel?: Function;
     /**
-     * @desc 宽度
+     * @desc 宽度。width与style.width相比，witdh优先级更高。
      */
-    width?: string;
+    width?: number | string;
     /**
      * @desc 标题
      */
@@ -54,34 +55,36 @@ export const ModalContext = createContext<ModalContext>({
 });
 
 const Modal = ({
+    style,
     isOpen,
     onOk,
     onCancel,
-    width = '520px',
+    width,
     title = 'title',
     footer,
-    style,
     children,
 }: ModalProps) => {
     const modalRef = useRef(null);
     const [visible, setVisible] = useState(false);
     const [animatedVisible, setAnimatedVisible] = useState(isOpen);
-    useEffect(() => {
-        console.log('animatedVisible改变了', animatedVisible);
-    }, [animatedVisible]);
+    const {
+        ModalContentWidth,
+        ModalContentTop,
+        AfterModalContentWidth,
+        AfterModalContentTop,
+    } = getAnimatedAttr(width, style);
+
     useEffect(() => {
         if (isOpen) {
-            console.log('isOpen=true');
             setVisible(true);
             setTimeout(() => {
                 setAnimatedVisible(true);
-            }, 10);
+            }, 20);
         } else {
-            console.log('isOpen=false');
             setAnimatedVisible(false);
             setTimeout(() => {
                 setVisible(false);
-            }, 300);
+            }, DURATION * 1000);
         }
     }, [isOpen]);
 
@@ -96,9 +99,22 @@ const Modal = ({
                         onClick={() => onCancel!()}
                         styles={{
                             opacity: animatedVisible ? 1 : 0,
+                            transition: `all ${DURATION}s`,
                         }}
                     />
-                    <ModalContent styles={{ width, ...style }}>
+                    <ModalContent
+                        styles={{
+                            ...style,
+                            width: animatedVisible
+                                ? ModalContentWidth
+                                : AfterModalContentWidth,
+                            opacity: animatedVisible ? 1 : 0,
+                            top: animatedVisible
+                                ? ModalContentTop
+                                : AfterModalContentTop,
+                            transition: `all ${DURATION}s`,
+                        }}
+                    >
                         <ModalHeader title={title}></ModalHeader>
                         <ModalBody>{children}</ModalBody>
                         <ModalFooter>{footer}</ModalFooter>

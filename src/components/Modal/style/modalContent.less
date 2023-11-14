@@ -1,17 +1,13 @@
 @import '../../../style/themes/variable.less';
-@import './modal.less';
 
 .modal-content {
     position: absolute; //为static时z-index无效
-    top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    width: 520px;
     padding: 1rem;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
-    // animation: open 0.13s;
     z-index: 999;
 
     .i_modal_close {

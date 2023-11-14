@@ -55,7 +55,7 @@ export const Custom = () => {
                 isOpen={isOpen}
                 title="标题"
                 width="600px"
-                style={{ top: '160px' }}
+                style={{ top: '20%' }}
                 onOk={onOk}
                 onCancel={onCancel}
                 footer={<button onClick={onOk}>自定义确认</button>}

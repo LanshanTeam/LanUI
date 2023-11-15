@@ -34,6 +34,10 @@ export interface ModalProps {
      */
     footer?: ReactNode;
     /**
+     * @desc 弹出框打开时页面是否可以滚动。 false：允许滚动。
+     */
+    blockScroll?: Boolean;
+    /**
      * @desc 用户传递的样式
      */
     style?: Object;
@@ -62,6 +66,7 @@ const Modal = ({
     width,
     title = 'title',
     footer,
+    blockScroll = true,
     children,
 }: ModalProps) => {
     const modalRef = useRef(null);
@@ -80,11 +85,13 @@ const Modal = ({
             setTimeout(() => {
                 setAnimatedVisible(true);
             }, 20);
+            if (blockScroll) document.body.style.overflow = 'hidden'; //避免弹出框展示时页面可以滚动
         } else {
             setAnimatedVisible(false);
             setTimeout(() => {
                 setVisible(false);
             }, DURATION * 1000);
+            if (blockScroll) document.body.style.overflow = ''; //避免弹出框展示时页面可以滚动
         }
     }, [isOpen]);
 

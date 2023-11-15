@@ -67,3 +67,53 @@ export const Custom = () => {
         </>
     );
 };
+
+export const BlockScrolling = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const onOk = () => {
+        setIsOpen(false);
+        console.log('执行onOk');
+    };
+
+    const onCancel = () => {
+        setIsOpen(false);
+        console.log('执行onCancel');
+    };
+
+    return (
+        <>
+            <Button label="点击弹出框" onClick={() => setIsOpen(true)}></Button>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <p>内容</p>
+            <Modal
+                isOpen={isOpen}
+                blockScroll={false}
+                onOk={onOk}
+                onCancel={onCancel}
+            >
+                <p>Content 1</p>
+                <p>Content 2</p>
+                <p>Content 3</p>
+            </Modal>
+        </>
+    );
+};

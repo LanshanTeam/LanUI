@@ -1,16 +1,52 @@
-import { ReactNode, useEffect } from 'react';
+import { CSSProperties, forwardRef, ReactNode, useEffect } from 'react';
 import './style/skeleton.less';
 
 export interface SkeletonProps {
+    /**
+     * @desc 是否加载
+     */
     loading: Boolean;
+    /**
+     * @desc 是否显示动画
+     */
+    active?: Boolean;
+    /**
+     * @desc 高度
+     */
     height?: string;
+    /**
+     * @desc 行数
+     */
+    rows?: number;
+    /**
+     * @desc 圆形大小
+     */
     size?: number;
+    /**
+     * @desc 是否为圆形
+     */
     circle?: Boolean;
-    children?: ReactNode;
+    /**
+     * @desc 用户自定义样式
+     */
+    style?: CSSProperties;
+    /**
+     * @desc 主体内容
+     */
+    children?: Array<ReactNode>;
 }
 
-const Skeleton = (props: SkeletonProps) => {
-    const { loading, height = '30px', circle, size = 6, children } = props;
+const Skeleton = forwardRef<any, SkeletonProps>((props, ref): any => {
+    const {
+        loading,
+        active,
+        height = '30px',
+        rows,
+        circle,
+        size = 6,
+        style,
+        children,
+    } = props;
 
     useEffect(() => {
         validateSkeletonProps(props);
@@ -25,17 +61,29 @@ const Skeleton = (props: SkeletonProps) => {
     };
 
     return loading ? (
-        <div
-            className="loading"
-            style={{
-                width: circle ? 5 * size + 'px' : '100%',
-                height: circle ? 5 * size + 'px' : height,
-                borderRadius: circle ? '50%' : 0,
-            }}
-        ></div>
+        Array(rows)
+            .fill(0)
+            .map((_, index) => {
+                return (
+                    <div
+                        key={index}
+                        ref={ref}
+                        className={`loading ${active ? 'active' : ''}`}
+                        style={{
+                            width: circle ? 5 * size + 'px' : '100%',
+                            height: circle
+                                ? 5 * size + 'px'
+                                : children && children.length
+                                ? 30 * children.length + 'px'
+                                : height,
+                            borderRadius: circle ? '50%' : 0,
+                            ...style,
+                        }}
+                    ></div>
+                );
+            })
     ) : (
-        <>{children}</>
+        <div style={{ ...style }}>{children}</div>
     );
-};
-
+});
 export default Skeleton;

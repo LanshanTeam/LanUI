@@ -14,8 +14,22 @@ export const Primary = () => {
     return (
         <>
             <Skeleton loading={true} height="20px"></Skeleton>
-            <Skeleton loading={true} height="20px"></Skeleton>
-            <Skeleton loading={true} height="20px"></Skeleton>
+        </>
+    );
+};
+
+export const Animated = () => {
+    return (
+        <>
+            <Skeleton loading={true} active height="20px"></Skeleton>
+        </>
+    );
+};
+
+export const Rows = () => {
+    return (
+        <>
+            <Skeleton loading={true} rows={3} active height="20px"></Skeleton>
         </>
     );
 };
@@ -23,12 +37,12 @@ export const Primary = () => {
 export const Circle = () => {
     return (
         <>
-            <Skeleton loading={true} circle={true} size={10}></Skeleton>
+            <Skeleton loading={true} circle={true} size={10} active></Skeleton>
         </>
     );
 };
 
-export const basic = () => {
+export const Adapt = () => {
     const [loading, setLoading] = useState(false);
     const toggle = () => {
         setLoading(true);
@@ -39,9 +53,9 @@ export const basic = () => {
     return (
         <>
             <Button label="toggle" onClick={toggle}></Button>
-            <Skeleton loading={loading}>
-                <h4>CodingStartup</h4>
-                <div className="description">
+            <Skeleton loading={loading} active style={{ marginTop: 10 + 'px' }}>
+                <div>CodingStartup</div>
+                <div>
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ex
                     quasienim facere commodi omnis. . .
                 </div>

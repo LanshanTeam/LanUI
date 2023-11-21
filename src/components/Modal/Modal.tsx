@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useEffect, useRef, useState } from 'react';
+import {
+    createContext,
+    CSSProperties,
+    ReactNode,
+    useEffect,
+    useRef,
+    useState,
+} from 'react';
 import { createPortal } from 'react-dom';
 import ModalOverlay from './components/ModalOverlay';
 import ModalContent from './components/ModalContent';
@@ -38,9 +45,13 @@ export interface ModalProps {
      */
     blockScroll?: Boolean;
     /**
+     * @desc 点击遮罩层是否退出弹出框。 false：不退出。
+     */
+    closeOnOverlayClick?: Boolean;
+    /**
      * @desc 用户传递的样式
      */
-    style?: Object;
+    style?: CSSProperties;
     /**
      * @desc 主体内容
      */
@@ -67,6 +78,7 @@ const Modal = ({
     title = 'title',
     footer,
     blockScroll = true,
+    closeOnOverlayClick = true,
     children,
 }: ModalProps) => {
     const modalRef = useRef(null);
@@ -85,13 +97,14 @@ const Modal = ({
             setTimeout(() => {
                 setAnimatedVisible(true);
             }, 20);
-            if (blockScroll) document.body.style.overflow = 'hidden'; //避免弹出框展示时页面可以滚动
+            //避免弹出框展示时页面可以滚动
+            if (blockScroll) document.body.style.overflow = 'hidden';
         } else {
             setAnimatedVisible(false);
             setTimeout(() => {
                 setVisible(false);
             }, DURATION * 1000);
-            if (blockScroll) document.body.style.overflow = ''; //避免弹出框展示时页面可以滚动
+            if (blockScroll) document.body.style.overflow = '';
         }
     }, [isOpen]);
 
@@ -103,7 +116,9 @@ const Modal = ({
                     style={{ display: visible ? 'block' : 'none' }}
                 >
                     <ModalOverlay
-                        onClick={() => onCancel!()}
+                        onClick={() => {
+                            if (closeOnOverlayClick) onCancel!();
+                        }}
                         styles={{
                             opacity: animatedVisible ? 1 : 0,
                             transition: `all ${DURATION}s`,

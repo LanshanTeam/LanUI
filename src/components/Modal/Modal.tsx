@@ -111,37 +111,36 @@ const Modal = ({
     return (
         <ModalContext.Provider value={{ isOpen, onOk, onCancel }}>
             {createPortal(
-                <div
-                    ref={modalRef}
-                    style={{ display: visible ? 'block' : 'none' }}
-                >
-                    <ModalOverlay
-                        onClick={() => {
-                            if (closeOnOverlayClick) onCancel!();
-                        }}
-                        styles={{
-                            opacity: animatedVisible ? 1 : 0,
-                            transition: `all ${DURATION}s`,
-                        }}
-                    />
-                    <ModalContent
-                        styles={{
-                            ...style,
-                            width: animatedVisible
-                                ? ModalContentWidth
-                                : AfterModalContentWidth,
-                            opacity: animatedVisible ? 1 : 0,
-                            top: animatedVisible
-                                ? ModalContentTop
-                                : AfterModalContentTop,
-                            transition: `all ${DURATION}s`,
-                        }}
-                    >
-                        <ModalHeader title={title}></ModalHeader>
-                        <ModalBody>{children}</ModalBody>
-                        <ModalFooter>{footer}</ModalFooter>
-                    </ModalContent>
-                </div>,
+                visible && (
+                    <div ref={modalRef}>
+                        <ModalOverlay
+                            onClick={() => {
+                                if (closeOnOverlayClick) onCancel!();
+                            }}
+                            styles={{
+                                opacity: animatedVisible ? 1 : 0,
+                                transition: `all ${DURATION}s`,
+                            }}
+                        />
+                        <ModalContent
+                            styles={{
+                                ...style,
+                                width: animatedVisible
+                                    ? ModalContentWidth
+                                    : AfterModalContentWidth,
+                                opacity: animatedVisible ? 1 : 0,
+                                top: animatedVisible
+                                    ? ModalContentTop
+                                    : AfterModalContentTop,
+                                transition: `all ${DURATION}s`,
+                            }}
+                        >
+                            <ModalHeader title={title}></ModalHeader>
+                            <ModalBody>{children}</ModalBody>
+                            <ModalFooter>{footer}</ModalFooter>
+                        </ModalContent>
+                    </div>
+                ),
                 document.body
             )}
         </ModalContext.Provider>

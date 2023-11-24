@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Modal Component should render correctly 1`] = `
+<div
+  class="modal-content"
+  style="width: 520px; opacity: 1; top: 50%; transition: all 0.1s;"
+>
+  <span
+    class="i_modal_close"
+  >
+    X
+  </span>
+  <h2>
+    title
+  </h2>
+  Test Content
+  <div
+    class="btn-area"
+  >
+    <button
+      class="storybook-button storybook-button--medium storybook-button--secondary"
+      type="button"
+    >
+      Cancel
+    </button>
+    <button
+      class="storybook-button storybook-button--medium storybook-button--secondary"
+      style="margin-left: 0.625rem;"
+      type="button"
+    >
+      OK
+    </button>
+  </div>
+</div>
+`;

@@ -67,7 +67,7 @@ const App = () => (
 ✨ 已完成
 
 -   [x] CSS 样式解决方案、初始化文件结构、UI 设计
--   [x] 开发 Button Alert 组件
+-   [x] 开发 Button Alert Input VirtualList 组件
 -   [x] 部分组件的测试
 
 ## 求助

@@ -7,6 +7,7 @@
     display: inline-block;
     line-height: 1;
 }
+
 .alert {
     position: unset;
     z-index: 999;
@@ -18,22 +19,27 @@
     font-size: 16px;
     border-radius: 0.3rem;
 }
+
 .alt-success {
     color: #b7eb8f;
     border-color: #b7eb8f;
 }
+
 .alt-danger {
     color: #dc3545;
     border-color: #dc3545;
 }
+
 .alt-info {
     color: #17a2b8;
     border-color: #17a2b8;
 }
+
 .alt-warning {
     color: #fadb14;
     border-color: #fadb14;
 }
+
 .storybook-button {
     font-family: Nunito Sans, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-weight: 700;
@@ -43,32 +49,39 @@
     display: inline-block;
     line-height: 1;
 }
+
 .storybook-button--primary {
     color: #fff;
     background-color: #1ea7fd;
 }
+
 .storybook-button--secondary {
     color: #333;
     background-color: transparent;
     box-shadow: rgba(0, 0, 0, 0.15) 0 0 0 1px inset;
 }
+
 .storybook-button--small {
     font-size: 12px;
     padding: 10px 16px;
 }
+
 .storybook-button--medium {
     font-size: 14px;
     padding: 11px 20px;
 }
+
 .storybook-button--large {
     font-size: 16px;
     padding: 12px 24px;
 }
+
 .alt-main {
     display: flex;
     flex-direction: row-reverse;
     justify-content: space-between;
 }
+
 .alert {
     position: unset;
     z-index: 999;
@@ -77,9 +90,11 @@
     min-width: 60px;
     border-style: solid;
 }
+
 .alert .content {
     margin: 0.275em 20px 0.275em 0;
 }
+
 .alert .quit {
     font-size: 12px;
     float: right;

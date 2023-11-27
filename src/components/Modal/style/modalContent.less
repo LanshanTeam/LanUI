@@ -1,0 +1,27 @@
+@import '../../../style/themes/variable.less';
+
+.modal-content {
+    position: fixed; //为static时z-index无效
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+    z-index: 999;
+
+    .i_modal_close {
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        border-radius: 15%;
+        text-align: center;
+        height: 1.5rem;
+        right: 1rem;
+        transition: background 0.12s linear;
+    }
+
+    .i_modal_close:hover {
+        background-color: @gray-500;
+    }
+}
